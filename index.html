@@ -4,20 +4,443 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Accessibility in Flutter - Workshop</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/blood.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		
+		<!-- Custom Styles -->
+		<style>
+			.workshop-info {
+				color: #ffc107;
+				font-size: 1.2em;
+				font-weight: 500;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- Title Slide -->
+				 <section>
+					<a href="https://flutter.dev">
+						<img 
+							src="flutter.png"
+							alt="reveal.js logo"
+							style="height: 180px; margin: 0 auto 4rem auto; color: white; background: transparent;"
+							class="demo-logo"
+						>
+					</a>
+					<h3>Accessibility in Flutter Workshop</h3>
+					<p>
+						<small>Presented by Angga Arifandi</small>
+						<small>August 2025</small>
+					</p>
+				</section>
+
+				<!-- Profile -->
+				 <section>
+					<h4>Hello There</h4>
+					<img 
+						src="Angga.png" 
+						height="240px"
+						style="background: transparent; margin: 0px;"
+					/>
+					<p>
+						<span>I'm Angga Arifandi.</span></br>
+						<span>Software Engineer, ING Netherlands.</span></br>
+						<span>Google Dev Expert in Flutter</span>
+					</p>
+				</section>
+
+				<!-- Agenda -->
+				<section>
+					<h4>Workshop Agenda</h4>
+					<ul>
+						<li class="fragment"><strong>Part 1:</strong> Foundations of Accessibility in Flutter (30-45 min)</li>
+						<li class="fragment"><em>Break (10 minutes)</em></li>
+						<li class="fragment"><strong>Part 2:</strong> Interactive Case Study (60 min)</li>
+						<li class="fragment"><em>Break (10 minutes)</em></li>
+						<li class="fragment"><strong>Part 3:</strong> Scaling Accessibility in Large Codebases (60 min)</li>
+						<li class="fragment"><strong>Q&A:</strong> Questions and Closing</li>
+					</ul>
+				</section>
+
+				<!-- Part 1: Foundations -->
+				<section>
+					<section>
+						<h3>Part 1</h3>
+						<h6>Foundations of Accessibility <span class="fragment">(+ in Flutter)</span></h6>
+					</section>
+
+					<!-- WCAG Principles -->
+					<section>
+						<h4>WCAG Principles - POUR</h4>
+						<ul>
+							<li class="fragment">
+								<span>📱 <strong>Perceivable</strong></span></br>
+								<span>Information must be presentable to users in ways they can perceive</span>
+							</li>
+							
+							<li class="fragment">
+								<span>⚡ <strong>Operable</strong></span></br>
+								<span>User interface components must be operable</span>
+							</li>
+
+							<li class="fragment">
+								<span>🧠 <strong>Understandable</strong></span></br>
+								<span>Information and UI operation must be understandable</span>
+							</li>
+
+							<li class="fragment">
+								<span>🔧 <strong>Robust</strong></span></br>
+								<span>Content must be robust enough for various assistive technologies</span>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Flutter Accessibility Overview -->
+					<section data-auto-animate>
+						<h6>Flutter's Accessibility Features</h6>
+						<ul>
+							<li class="fragment">
+								<span data-id="title1">
+									🔤 <strong>Large font support</strong> across platforms
+								</span>
+							</li>
+							<li class="fragment" data-id="title2">📢 <strong>Screen reader compatibility</strong> (TalkBack, VoiceOver)</li>
+							<li class="fragment" data-id="title3">🎨 <strong>Color contrast guidelines</strong></li>
+							<li class="fragment" data-id="title4">🏷️ <strong>Semantic role assignment</strong> for custom widgets</li>
+							<li class="fragment" data-id="title5">🎯 <strong>Focus management</strong> and keyboard navigation</li>
+							<li class="fragment" data-id="title6">✋ <strong>Accessible gesture alternatives</strong></li>
+						</ul>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title1">
+							🔤 <strong>Large font support</strong> across platforms
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title2">
+							📢 <strong>Screen reader compatibility</strong> (TalkBack, VoiceOver)
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title3">
+							🎨 <strong>Color contrast guidelines</strong>
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title4">
+							🏷️ <strong>Semantic role assignment</strong> for custom widgets
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title5">
+							🎯 <strong>Focus management</strong> and keyboard navigation
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title6">
+							✋ <strong>Accessible gesture alternatives</strong>
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<!-- Automatic Accessibility -->
+					<section data-auto-animate>
+						<h6>Automatic Accessibility</h6>
+						<ul>
+							<li data-id="automatic1">
+								✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+							</li>
+
+							<li data-id="automatic2">
+								⚙️ <strong>Semantic roles</strong> can be explicitly defined using <code>Semantics</code> widget
+							</li>
+
+							<li data-id="automatic3">
+								🧪 <strong>Testing tools</strong> available via Accessibility Guideline API
+							</li>
+						</ul>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic1">
+							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic2">
+							⚙️ <strong>Semantic roles</strong> can be explicitly defined using <code>Semantics</code> widget
+						</h6>
+						<p>Provides additional information about widgets to assistive technologies</p>
+						<pre><code data-trim data-noescape class="dart">
+Semantics(
+  label: 'Submit button',
+  hint: 'Tap this button to submit the form',
+  child: ElevatedButton(
+    onPressed: () {
+      // Submit logic
+    },
+    child: Text('Submit'),
+  ),
+)
+						</code></pre>
+					</section>
+
+					<!-- Semantics Properties -->
+					<section>
+						<h6>Key Semantic Properties</h6>
+						<ul>
+							<li><strong>label:</strong> Describes what the widget is</li>
+							<li><strong>hint:</strong> Describes what happens when interacting</li>
+							<li><strong>value:</strong> Current value (for input fields, sliders)</li>
+							<li><strong>excludeSemantics:</strong> Hide decorative elements</li>
+							<li><strong>button:</strong> Mark as interactive button</li>
+							<li><strong>header:</strong> Mark as heading</li>
+						</ul>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic3">
+							🧪 <strong>Testing tools</strong> available via Accessibility Guideline API
+						</h6>
+						<p>
+							Explanation & example
+						</p>
+					</section>
+
+					<!-- Focus and Keyboard Navigation -->
+					<section>
+						<h6>Focus & Keyboard Navigation</h6>
+						<div style="text-align: left;">
+							<p>Key Use Cases:</p>
+							<ul>
+								<li>🪟 <strong>Modal presentation</strong> - Move focus to modal content</li>
+								<li>🔀 <strong>Screen navigation</strong> - Direct focus to specific elements</li>
+								<li>📋 <strong>Form validation</strong> - Focus on error fields</li>
+							</ul>
+							<br>
+							<p>💡 <strong>Tip:</strong> Programmatically managing focus ensures smooth navigation for assistive technologies</p>
+						</div>
+					</section>
+
+					<!-- Screen Reader Support -->
+					<section>
+						<h6>Screen Reader Support</h6>
+						<div style="text-align: left;">
+							<p>Supported Platforms:</p>
+							<ul>
+								<li>📱 <strong>Mobile:</strong> TalkBack (Android), VoiceOver (iOS)</li>
+								<li>💻 <strong>Desktop:</strong> Multiple screen readers supported</li>
+							</ul>
+							<br>
+							<p>Best Practices:</p>
+							<ul>
+								<li>Use semantic labeling for all interactive elements</li>
+								<li>Ensure logical navigation flow</li>
+								<li>Provide descriptive alternative text</li>
+								<li>Test with actual screen readers</li>
+							</ul>
+						</div>
+					</section>
+
+					<!-- Accessible Gestures -->
+					<section>
+						<h6>Accessible Gestures</h6>
+						<div style="text-align: left;">
+							<p>🎯 </strong>Core Principle</strong>:</p>
+							<p><em>"Gesture activated functionality should also be available without the use of gestures."</em></p>
+						
+							<p><strong>Implementation</strong>:</p>
+							<ul>
+								<li>✋ Provide alternative interaction methods</li>
+								<li>🚫 Allow users to cancel accidental interactions</li>
+								<li>🔄 Support motion alternatives for motion-activated actions</li>
+								<li>📝 Provide clear input instructions</li>
+							</ul>
+						</div>
+					</section>
+
+					<!-- Testing Checklist -->
+					<section>
+						<h6>Accessibility Testing in Flutter Checklist</h6>
+						<ul>
+							<li>✅ Interactive elements have meaningful actions</li>
+							<li>✅ Test with screen readers (TalkBack, VoiceOver)</li>
+							<li>✅ Verify sufficient color contrast</li>
+							<li>✅ Tappable targets are at least 48x48 pixels</li>
+							<li>✅ Support context preservation during interactions</li>
+							<li>✅ Enable undo actions for important operations</li>
+							<li>✅ Test with large fonts enabled</li>
+						</ul>
+					</section>
+
+					<section>
+						<h6><span style="font-size: 12px; vertical-align: middle;">(Optional) </span>Show example using a simple Flutter app</h6>
+						<p>Exaplanation and Example</p>
+					</section>
+				</section>
+
+				<!-- Break 1 -->
+				<section data-background-color="#2c3e50">
+					<h4>☕ Break Time</h4>
+					<h6>10 Minutes</h6>
+					<p>Get some coffee, stretch, and we'll continue with Part 2!</p>
+				</section>
+
+				<!-- Part 2: Interactive Case Study -->
+				<section>
+					<section>
+						<h5>Part 2</h5>
+						<h6>Interactive Case Study</h6>
+					</section>
+
+					<section>
+						<h6>App for case study -> Before</h6>
+						<img src="screenshot_1.png" height="420px"/>
+						<!-- <ul>
+							<li>Real-world accessibility implementation with </li>
+							<li>Hands-on coding exercises</li>
+							<li>Common accessibility issues and solutions</li>
+							<li>Testing with assistive technologies</li>
+						</ul> -->
+					</section>
+
+					<section>
+						<h6>App for case study -> After</h6>
+						<img src="screenshot_2.png" height="420px"/>
+						<!-- <ul>
+							<li>Real-world accessibility implementation with </li>
+							<li>Hands-on coding exercises</li>
+							<li>Common accessibility issues and solutions</li>
+							<li>Testing with assistive technologies</li>
+						</ul> -->
+					</section>
+
+					<section>
+						<h6>App for case study -> To discuss (To be done)</h6>
+						<ul>
+							<li>
+								Grouping
+							</li>
+							<li>
+								Use Flutter widgets
+							</li>
+							<li>
+								Missing Semantic Labels and Descriptions
+							</li>
+							<li>
+								Inaccessible Interactive Elements
+							</li>
+							<li>
+								Poor Color Contrast
+							</li>
+							<li>
+								Missing Focus Management
+							</li>
+							<li>
+								Insufficient Touch Target Sizes
+							</li>
+							<li>
+								Tests
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- Break 2 -->
+				<section data-background-color="#2c3e50">
+					<h5>☕ Break Time</h5>
+					<h6>10 Minutes</h6>
+					<p>Another quick break before our final section!</p>
+				</section>
+
+				<!-- Part 3: Scaling Accessibility -->
+				<section>
+					<section>
+						<h5>Part 3</h5>
+						<h6>Scaling Accessibility in Large Codebases</h6>
+					</section>
+
+					<section>
+						<h6>Topics to Cover... (To be done)</h6>
+						<ul>
+							<li>
+								Use Flutter original widgets underneath, 
+								as much as possible
+							</li>
+							<li>
+								Create good components
+							</li>
+							<li>
+								Page scaffolding
+							</li>
+							<li>
+								Guideline and documentation
+							</li>
+							<li>
+								Testing
+							</li>
+							<li>
+								Use AI help
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- Q&A and Closing -->
+				<section>
+					<h6>Questions?</h6>
+					<br>
+					<p>Thank you for attending the Accessibility in Flutter workshop!</p>
+					<br>
+					<p><em>Remember: Accessibility is not a feature, it's a responsibility. </em> ☺️</p>
+				</section>
+
+				<!-- Thank You -->
+				<section data-background-color="#1a237e">
+					<h5>Thank You!</h5>
+					<h6>Building inclusive apps together 🚀</h6>
+					<p>
+						P.S. 
+						<em>
+							See you when I see you, and good luck! 🔥🔥🔥
+						</em>
+					</p>
+				</section>
 			</div>
 		</div>
 
