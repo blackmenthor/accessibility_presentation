@@ -20,6 +20,45 @@
 				font-size: 1.2em;
 				font-weight: 500;
 			}
+
+			.image-flow-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 20px;
+				padding: 20px;
+				border-radius: 10px;
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.image-container {
+				flex-shrink: 0;
+			}
+
+			.flow-image {
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+				object-fit: cover;
+			}
+
+			.arrow {
+				font-size: 24px;
+				color: #fff;
+				font-weight: bold;
+				user-select: none;
+			}
+
+			.image-float {
+				float: left;
+				margin: 10px;
+			}
+			
+			.clearfix::after {
+				content: "";
+				display: table;
+				clear: both;
+			}
 		</style>
 	</head>
 	<body>
@@ -63,9 +102,9 @@
 					<ul>
 						<li class="fragment"><strong>Part 1:</strong> Foundations of Accessibility in Flutter (30-45 min)</li>
 						<li class="fragment"><em>Break (10 minutes)</em></li>
-						<li class="fragment"><strong>Part 2:</strong> Interactive Case Study (60 min)</li>
+						<li class="fragment"><strong>Part 2:</strong> Interactive Case Study (45 min)</li>
 						<li class="fragment"><em>Break (10 minutes)</em></li>
-						<li class="fragment"><strong>Part 3:</strong> Scaling Accessibility in Large Codebases (60 min)</li>
+						<li class="fragment"><strong>Part 3:</strong> Scaling Accessibility in Large Codebases (45 min)</li>
 						<li class="fragment"><strong>Q&A:</strong> Questions and Closing</li>
 					</ul>
 				</section>
@@ -78,9 +117,9 @@
 					</section>
 
 					<!-- WCAG Principles -->
-					<section>
+					<section data-auto-animate="">
 						<h4>WCAG Principles - POUR</h4>
-						<ul>
+						<ul data-id="ul-1">
 							<li class="fragment">
 								<span>📱 <strong>Perceivable</strong></span></br>
 								<span>Information must be presentable to users in ways they can perceive</span>
@@ -96,11 +135,32 @@
 								<span>Information and UI operation must be understandable</span>
 							</li>
 
-							<li class="fragment">
+							<li data-id="li-1" class="fragment">
 								<span>🔧 <strong>Robust</strong></span></br>
 								<span>Content must be robust enough for various assistive technologies</span>
 							</li>
 						</ul>
+					</section>
+
+					<section data-auto-animate>
+						<h4>WCAG Principles - POUR</h4>
+						<ul data-id="ul-1">
+							<li data-id="li-1">
+								<span>🔧 <strong>Robust</strong></span></br>
+								<span>Content must be robust enough for various assistive technologies</span>
+							</li>
+						</ul>
+						<br><br>
+
+						<div style="text-align: left;">
+							<span class="fragment">
+							Android TalkBack
+							</span>
+							<br>
+							<span class="fragment">
+								iOS VoiceOver
+							</span>
+						</div>
 					</section>
 
 					<!-- Flutter Accessibility Overview -->
@@ -124,26 +184,223 @@
 						<h6 data-id="title1">
 							🔤 <strong>Large font support</strong> across platforms
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<span data-id="title2">
+							Flutter automatically adapts to Device's font setting
+						</span>
+						<br>
+						<div class="image-flow-container">
+							<!-- Left Image -->
+							<div class="image-container fragment">
+								<img 
+									height="100px"
+									width="240px"
+									src="font_1.png" 
+									alt="Left image" 
+									class="flow-image">
+							</div>
+							
+							<!-- First Arrow -->
+							<div class="arrow fragment">→</div>
+							
+							<!-- Center Image -->
+							<div class="image-container fragment">
+								<img 
+									height="100px"
+									src="font_2.png" 
+									alt="Center image" 
+									class="flow-image">
+							</div>
+							
+							<!-- Second Arrow -->
+							<div class="arrow fragment">→</div>
+							
+							<!-- Right Image -->
+							<div class="image-container fragment">
+								<img 
+									width="240px"
+									src="font_3.png" 
+									alt="Right image" 
+									class="flow-image">
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title1">
+							🔤 <strong>Large font support</strong> across platforms
+						</h6>
+						<span data-id="title2">
+							Flutter automatically adapts to Device's font setting 
+							(How to escape)
+						</span>
+						<br>
+						<pre class="fragment" data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							Text(
+									'This text won\'t scale',
+									style: TextStyle(fontSize: 16),
+							)
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h6 data-id="title1">
+							🔤 <strong>Large font support</strong> across platforms
+						</h6>
+						<span data-id="title2">
+							Flutter automatically adapts to Device's font setting
+							(How to escape)
+						</span>
+						<br>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							MediaQuery(
+								data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+								child: Text(
+									'This text won\'t scale',
+									style: TextStyle(fontSize: 16),
+								),
+							)
+						</code></pre>
 					</section>
 
 					<section data-auto-animate>
 						<h6 data-id="title2">
 							📢 <strong>Screen reader compatibility</strong> (TalkBack, VoiceOver)
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<div style="text-align: left;">
+							<p><strong>How Flutter enables screen readers:</strong></p>
+							<ul>
+								<li class="fragment">🤖 <strong>Android TalkBack:</strong> Automatically reads UI elements aloud</li>
+								<li class="fragment">🍎 <strong>iOS VoiceOver:</strong> Provides audio descriptions of interface elements</li>
+								<li class="fragment">🔄 <strong>Automatic semantic tree generation</strong> from Flutter widgets</li>
+								<li class="fragment">📱 <strong>Cross-platform consistency</strong> in accessibility behavior</li>
+							</ul>
+						</div>
 					</section>
 
 					<section data-auto-animate>
 						<h6 data-id="title3">
 							🎨 <strong>Color contrast guidelines</strong>
 						</h6>
-						<p>
-							Explanation & example
+						<div data-id="content">
+							<p>
+								WCAG Color Contrast Guideline
+							</p>
+							<ul>
+								<li class="fragment">
+									<span style="font-size: xx-large;">
+										<b>Level AA (Minimum)</b>: 
+										Normal Text, minimum contrast ratio of 4.5:1.
+										Large Text, minimum contrast ratio of 3:1.
+									</span>
+								</li>
+								<li class="fragment">
+									<span style="font-size: xx-large;">
+										<b>Level AAA</b>
+										Normal Text, minimum contrast ratio of 7:1.
+										Large Text, minimum contrast ratio of 4.5:1.
+									</span>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title3">
+							🎨 <strong>Color contrast guidelines</strong>
+						</h6>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							double calculateContrastRatio(Color color1, Color2 color2) {
+								double luminance1 = color1.computeLuminance();
+								double luminance2 = color2.computeLuminance();
+								
+								double lightest = math.max(luminance1, luminance2);
+								double darkest = math.min(luminance1, luminance2);
+								
+								return (lightest + 0.05) / (darkest + 0.05);
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title3">
+							🎨 <strong>Color contrast guidelines</strong>
+						</h6>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							double calculateContrastRatio(Color color1, Color2 color2) {
+								double luminance1 = color1.computeLuminance();
+								double luminance2 = color2.computeLuminance();
+								
+								double lightest = math.max(luminance1, luminance2);
+								double darkest = math.min(luminance1, luminance2);
+								
+								return (lightest + 0.05) / (darkest + 0.05);
+							}
+
+							// Usage
+							Color backgroundColor = Colors.blue[700]!;
+							Color textColor = Colors.white;
+							double contrast = calculateContrastRatio(backgroundColor, textColor);
+
+							print('Contrast ratio: ${contrast.toStringAsFixed(2)}:1');
+							// Should print something like "Contrast ratio: 7.23:1"
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title4">
+							🏷️ <strong>Semantic role assignment</strong> for custom widgets
+						</h6>
+						<pre class="fragment" data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							Text(
+								'Test Page',
+								style: TextStyle(
+									color: Colors.white,
+								),
+							)
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title4">
+							🏷️ <strong>Semantic role assignment</strong> for custom widgets
+						</h6>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							class Text extends StatelessWidget {
+								final String semanticsLabel;
+							
+								Widget build(BuildContext context) {
+									...
+									if (semanticsLabel != null) {
+										result = Semantics(
+											textDirection: textDirection,
+											label: semanticsLabel,
+											child: ExcludeSemantics(
+											child: result,
+											),
+										);
+									}
+									return result;
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title4">
+							🏷️ <strong>Semantic role assignment</strong> for custom widgets
+						</h6>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							class MyCustomButton extends StatelessWidget {
+								Widget build(BuildContext context) {
+									return GestureDetector(
+										child: Container(
+											...,
+										),
+									);
+								}
+							}
+						</code></pre>
+						<p class="fragment">
+							Custom widgets might not support Semantics by default
 						</p>
 					</section>
 
@@ -151,27 +408,252 @@
 						<h6 data-id="title4">
 							🏷️ <strong>Semantic role assignment</strong> for custom widgets
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+							class MyCustomButton extends StatelessWidget {
+								Widget build(BuildContext context) {
+									return Semantics(
+										button: true,
+										enabled: isEnabled,
+										child: GestureDetector(
+											child: Container(
+												...,
+											),
+										)
+									);
+								}
+							}
+						</code></pre>
 					</section>
 
 					<section data-auto-animate>
 						<h6 data-id="title5">
 							🎯 <strong>Focus management</strong> and keyboard navigation
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<div class="image-flow-container">
+							<div class="image-container fragment">
+								<img 
+										width="240px"
+										src="order.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container fragment">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												Container1(),
+												Container2(),
+												Container3(),
+												Container4(),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title5">
+							🎯 <strong>Focus management</strong> and keyboard navigation
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="order.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												Semantics(
+													label: 'Some Label',
+													sortKey: OrdinalSortKey(1),
+													Container1(),
+												),
+												Semantics(
+													label: 'Some Label',
+													sortKey: OrdinalSortKey(1),
+													child: Container2(),
+												),
+												Semantics(
+													label: 'Some Label',
+													sortKey: OrdinalSortKey(4),
+													child: Container3(),
+												),
+												Semantics(
+													label: 'Fixed bottom section',
+													sortKey: OrdinalSortKey(2),
+													child: Container4(),
+												),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title5">
+							🎯 <strong>Focus management</strong> and keyboard navigation
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="order.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												Container1(),
+												Container2(),
+												Container3(),
+												// will be skipped 
+												// from TalkBack
+												Semantics(
+													excludeSemantics: true,
+													child: Container4(),
+												),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
 					</section>
 
 					<section data-auto-animate>
 						<h6 data-id="title6">
 							✋ <strong>Accessible gesture alternatives</strong>
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<div style="text-align: left;">
+							<p class="fragment">🎯 </strong>Core Principle</strong>:</p>
+							<p class="fragment"><em>"Gesture activated functionality should also be available without the use of gestures."</em></p>
+						
+							<p class="fragment"><strong>Implementation</strong>:</p>
+							<ul>
+								<li class="fragment">✋ Provide alternative interaction methods</li>
+								<li class="fragment">🚫 Allow users to cancel accidental interactions</li>
+								<li class="fragment">🔄 Support motion alternatives for motion-activated actions</li>
+								<li class="fragment">📝 Provide clear input instructions</li>
+							</ul>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title6">
+							✋ <strong>Accessible gesture alternatives</strong>
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="image_viewer.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												ImageViewer(),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title6">
+							✋ <strong>Accessible gesture alternatives</strong>
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="image_viewer.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												Row(
+													children: [
+														ZoomInButton(),
+														ZoomOutButton(),
+														ResetButton(),
+													],
+												),
+												ImageViewer(),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="title6">
+							✋ <strong>Accessible gesture alternatives</strong>
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="image_viewer.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return Column(
+											children: [
+												// ✅ Alternative: Keyboard controls
+												Semantics(
+													label: 'Current zoom level: ${(_scale * 100).round()}%',
+													child: Focus(
+														onKeyEvent: (node, event) {
+															if (event is KeyDownEvent) {
+															switch (event.logicalKey) {
+																case LogicalKeyboardKey.equal: // + key
+																if (event.isControlPressed) {
+																	_zoomIn();
+																	return KeyEventResult.handled;
+																}
+																break;
+																...,
+														child: ImageViewer(),
+											],
+										)
+									}
+								</code></pre>
+							</div>
+						</div>
 					</section>
 
 					<!-- Automatic Accessibility -->
@@ -196,9 +678,137 @@
 						<h6 data-id="automatic1">
 							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
 						</h6>
-						<p>
-							Explanation & example
-						</p>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="basic.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return MaterialButton();
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic1">
+							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="basic.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									// Implementation of
+									// MaterialButton
+									Widget build(BuildContext context) {
+										return Semantics(
+											container: true,
+											button: true,
+											enabled: widget.enabled,
+											child: _InputPadding(
+												minSize: minSize,
+												child: result,
+											),
+										);
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic1">
+							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="basic.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation"><code class="hljs dart" data-trim data-line-numbers>
+									Widget build(BuildContext context) {
+										return TextField();
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic1">
+							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="basic.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation" >
+									<code class="hljs dart" data-trim data-line-numbers>
+									/// TextField implementation
+									Widget build(BuildContext context) {
+										return Semantics(
+											enabled: _isEnabled,
+											maxValueLength: semanticsMaxValueLength,
+											currentValueLength: _currentLength,
+											...
+										);
+									}
+								</code></pre>
+							</div>
+						</div>
+					</section>
+
+					<section data-auto-animate>
+						<h6 data-id="automatic1">
+							✅ <strong>Standard Flutter widgets</strong> generate accessibility trees automatically
+						</h6>
+						<div class="image-flow-container">
+							<div class="image-container">
+								<img 
+										width="240px"
+										src="basic.png" 
+										alt="Left image" 
+										class="flow-image">
+							</div>
+
+							<div class="image-container">
+								<pre data-id="code-animation" >
+									<code class="hljs dart" data-trim data-line-numbers>
+									/// Your Own Custom Button implementation
+									Widget build(BuildContext context) {
+										return GestureDetector(
+											onTap: onTap,
+											child: child,
+										);
+									}
+								</code></pre>
+							</div>
+						</div>
 					</section>
 
 					<section data-auto-animate>
@@ -237,41 +847,237 @@ Semantics(
 						<h6 data-id="automatic3">
 							🧪 <strong>Testing tools</strong> available via Accessibility Guideline API
 						</h6>
-						<p>
-							Explanation & example
+						<div style="text-align: left;">
+							<p><strong>Flutter provides multiple testing approaches:</strong></p>
+							<ul>
+								<li class="fragment">🔍 <strong>Accessibility Guideline API</strong> - Automated accessibility checks</li>
+								<li class="fragment">🐛 <strong>Semantic Debugging</strong> - Visual semantic tree inspection</li>
+								<li class="fragment">⚡ <strong>Unit Testing</strong> - Test semantic properties programmatically</li>
+								<li class="fragment">🤖 <strong>Integration Testing</strong> - Test with real assistive technologies</li>
+								<li class="fragment">🔧 <strong>Automated Tools</strong> - CI/CD accessibility validation</li>
+							</ul>
+						</div>
+					</section>
+
+					<!-- Accessibility Guideline API ---->
+					<section data-auto-animate>
+						<h6>🔍 <strong>Accessibility Guideline API</strong></h6>
+						<p>Automated accessibility checks built into Flutter testing framework</p>
+						<pre class="fragment"><code class="hljs dart" data-trim data-line-numbers>
+							import 'package:flutter/material.dart';
+							import 'package:flutter_test/flutter_test.dart';
+
+							void main() {
+							  testWidgets('Counter app accessibility test', (WidgetTester tester) async {
+							    await tester.pumpWidget(MyApp());
+
+							    // Test accessibility guidelines
+							    await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(textContrastGuideline));
+							  });
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6>🔍 <strong>Available Guidelines</strong></h6>
+						<div style="text-align: left;">
+							<ul>
+								<li class="fragment">
+									<strong>androidTapTargetGuideline</strong><br>
+									<em>Ensures tap targets are at least 48x48 dp on Android</em>
+								</li>
+								<li class="fragment">
+									<strong>iOSTapTargetGuideline</strong><br>
+									<em>Ensures tap targets are at least 44x44 points on iOS</em>
+								</li>
+								<li class="fragment">
+									<strong>labeledTapTargetGuideline</strong><br>
+									<em>Ensures all tap targets have accessible labels</em>
+								</li>
+								<li class="fragment">
+									<strong>textContrastGuideline</strong><br>
+									<em>Validates text contrast ratios meet WCAG standards</em>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<!-- Semantic Debugging ---->
+					<section data-auto-animate>
+						<h6>🐛 <strong>Semantic Debugging</strong></h6>
+						<p>Visual inspection of the semantic tree during development</p>
+						<pre class="fragment"><code class="hljs dart" data-trim data-line-numbers>
+							import 'package:flutter/rendering.dart';
+
+							void main() {
+							  // Enable semantic debugging in main.dart
+							  debugPaintSizeEnabled = false;
+							  
+							  runApp(
+							    MaterialApp(
+							      showSemanticsDebugger: true, // Enable semantic tree overlay
+							      home: MyHomePage(),
+							    ),
+							  );
+							}
+						</code></pre>
+						<p class="fragment">
+							<em>Shows semantic boundaries, labels, and actions as colored overlays</em>
 						</p>
 					</section>
 
-					<!-- Focus and Keyboard Navigation -->
-					<section>
-						<h6>Focus & Keyboard Navigation</h6>
-						<div style="text-align: left;">
-							<p>Key Use Cases:</p>
-							<ul>
-								<li>🪟 <strong>Modal presentation</strong> - Move focus to modal content</li>
-								<li>🔀 <strong>Screen navigation</strong> - Direct focus to specific elements</li>
-								<li>📋 <strong>Form validation</strong> - Focus on error fields</li>
-							</ul>
-							<br>
-							<p>💡 <strong>Tip:</strong> Programmatically managing focus ensures smooth navigation for assistive technologies</p>
-						</div>
+					<section data-auto-animate>
+						<h6>🐛 <strong>Programmatic Semantic Debugging</strong></h6>
+						<pre><code class="hljs dart" data-trim data-line-numbers>
+							import 'package:flutter/rendering.dart';
+
+							void debugSemanticTree() {
+							  // Print semantic tree to console
+							  debugDumpSemanticsTree();
+							  
+							  // Print render tree (includes semantic info)
+							  debugDumpRenderTree();
+							  
+							  // Print app's semantic tree in testing
+							  debugDumpApp();
+							}
+
+							// In widget tests
+							testWidgets('Debug semantic tree', (WidgetTester tester) async {
+							  await tester.pumpWidget(MyApp());
+							  
+							  // Print semantic tree for inspection
+							  debugDumpSemanticsTree();
+							});
+						</code></pre>
 					</section>
 
-					<!-- Accessible Gestures -->
-					<section>
-						<h6>Accessible Gestures</h6>
-						<div style="text-align: left;">
-							<p>🎯 </strong>Core Principle</strong>:</p>
-							<p><em>"Gesture activated functionality should also be available without the use of gestures."</em></p>
-						
-							<p><strong>Implementation</strong>:</p>
-							<ul>
-								<li>✋ Provide alternative interaction methods</li>
-								<li>🚫 Allow users to cancel accidental interactions</li>
-								<li>🔄 Support motion alternatives for motion-activated actions</li>
-								<li>📝 Provide clear input instructions</li>
-							</ul>
-						</div>
+					<!-- Unit Testing Semantics ---->
+					<section data-auto-animate>
+						<h6>⚡ <strong>Unit Testing Semantic Properties</strong></h6>
+						<p>Test specific semantic properties programmatically</p>
+						<pre class="fragment"><code class="hljs dart" data-trim data-line-numbers>
+							testWidgets('Button has correct semantic properties', (WidgetTester tester) async {
+							  await tester.pumpWidget(
+							    MaterialApp(
+							      home: Scaffold(
+							        body: ElevatedButton(
+							          onPressed: () {},
+							          child: Text('Submit'),
+							        ),
+							      ),
+							    ),
+							  );
+
+							  // Find semantic node
+							  final buttonSemantics = tester.getSemantics(find.text('Submit'));
+							  
+							  // Verify semantic properties
+							  expect(buttonSemantics.hasAction(SemanticsAction.tap), isTrue);
+							  expect(buttonSemantics.label, equals('Submit'));
+							  expect(buttonSemantics.isButton, isTrue);
+							  expect(buttonSemantics.isEnabled, isTrue);
+							});
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6>⚡ <strong>Testing Custom Semantic Properties</strong></h6>
+						<pre><code class="hljs dart" data-trim data-line-numbers>
+							testWidgets('Custom widget has proper semantics', (WidgetTester tester) async {
+							  await tester.pumpWidget(
+							    MaterialApp(
+							      home: Semantics(
+							        label: 'User profile picture',
+							        hint: 'Tap to change profile picture',
+							        button: true,
+							        child: GestureDetector(
+							          onTap: () {},
+							          child: CircleAvatar(child: Icon(Icons.person)),
+							        ),
+							      ),
+							    ),
+							  );
+
+							  final semantics = tester.getSemantics(find.byType(CircleAvatar));
+							  
+							  expect(semantics.label, equals('User profile picture'));
+							  expect(semantics.hint, equals('Tap to change profile picture'));
+							  expect(semantics.hasAction(SemanticsAction.tap), isTrue);
+							  expect(semantics.isButton, isTrue);
+							});
+						</code></pre>
+					</section>
+
+					<!-- Integration Testing ---->
+					<section data-auto-animate>
+						<h6>🤖 <strong>Integration Testing with Screen Readers</strong></h6>
+						<p>Test real accessibility behavior with assistive technologies</p>
+						<pre class="fragment"><code class="hljs dart" data-trim data-line-numbers>
+							// integration_test/accessibility_test.dart
+							import 'package:integration_test/integration_test.dart';
+							import 'package:flutter_test/flutter_test.dart';
+							import 'package:myapp/main.dart' as app;
+
+							void main() {
+							  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+							  
+							  group('Accessibility Integration Tests', () {
+							    testWidgets('Navigation with TalkBack simulation', (tester) async {
+							      app.main();
+							      await tester.pumpAndSettle();
+							      
+							      // Simulate screen reader navigation
+							      await tester.binding.defaultBinaryMessenger.send(
+							        'flutter/accessibility',
+							        // TalkBack navigation commands
+							      );
+							      
+							      // Verify screen reader announcements
+							      // (requires platform-specific implementation)
+							    });
+							  });
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate>
+						<h6>🔧 <strong>Creating Custom Accessibility Tests</strong></h6>
+						<pre><code class="hljs dart" data-trim data-line-numbers>
+							// test/accessibility_helper.dart
+							import 'package:flutter_test/flutter_test.dart';
+
+							class AccessibilityTestHelper {
+							  static Future<void> runAccessibilityTests(WidgetTester tester) async {
+							    // Test all standard guidelines
+							    await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(textContrastGuideline));
+							    
+							    // Custom validations
+							    await _validateCustomSemantics(tester);
+							  }
+							  
+							  static Future<void> _validateCustomSemantics(WidgetTester tester) async {
+							    // Find all interactive elements
+							    final buttons = find.byWidgetPredicate((widget) => 
+							      widget is ElevatedButton || widget is TextButton || widget is IconButton
+							    );
+							    
+							    // Ensure each has proper semantics
+							    for (int i = 0; i < tester.widgetList(buttons).length; i++) {
+							      final buttonFinder = buttons.at(i);
+							      final semantics = tester.getSemantics(buttonFinder);
+							      expect(semantics.label?.isNotEmpty, isTrue, 
+							        reason: 'Button at index $i missing label');
+							    }
+							  }
+							}
+						</code></pre>
 					</section>
 
 					<!-- Testing Checklist -->
@@ -309,55 +1115,59 @@ Semantics(
 					</section>
 
 					<section>
-						<h6>App for case study -> Before</h6>
-						<img src="screenshot_1.png" height="420px"/>
-						<!-- <ul>
-							<li>Real-world accessibility implementation with </li>
-							<li>Hands-on coding exercises</li>
-							<li>Common accessibility issues and solutions</li>
-							<li>Testing with assistive technologies</li>
-						</ul> -->
+						<h6>App for case study<br> what are we going to do?</h6>
+						<div class="image-flow-container">
+								<ol style="font-size: 20px;">
+									<li class="fragment">
+										We will take a look how are the current app looks (might also be a blind test!)
+									</li>
+									<li class="fragment">
+										We will discuss together what are the flaws from the accessibility perspective
+									</li>
+									<li class="fragment">
+										We will try to fix the flaws we just discovered
+									</li>
+									<li class="fragment">
+										We will see the existing solution that I have prepared
+									</li>
+								</ol>
+						</div>
 					</section>
 
 					<section>
-						<h6>App for case study -> After</h6>
-						<img src="screenshot_2.png" height="420px"/>
-						<!-- <ul>
-							<li>Real-world accessibility implementation with </li>
-							<li>Hands-on coding exercises</li>
-							<li>Common accessibility issues and solutions</li>
-							<li>Testing with assistive technologies</li>
-						</ul> -->
+						<h6>Lets look and discuss the current situation of the app</h6>
+						<img class="fragment" src="non-visible.png" height="420px"/>
 					</section>
 
 					<section>
-						<h6>App for case study -> To discuss (To be done)</h6>
+						<h6>Points To be discussed</h6>
 						<ul>
-							<li>
-								Grouping
-							</li>
-							<li>
+							<li class="fragment">
 								Use Flutter widgets
 							</li>
-							<li>
+							<li class="fragment">
+								Grouping
+							</li>
+							<li class="fragment">
 								Missing Semantic Labels and Descriptions
 							</li>
-							<li>
+							<li class="fragment">
 								Inaccessible Interactive Elements
 							</li>
-							<li>
+							<li class="fragment">
 								Poor Color Contrast
 							</li>
-							<li>
+							<li class="fragment">
 								Missing Focus Management
 							</li>
-							<li>
+							<li class="fragment">
 								Insufficient Touch Target Sizes
 							</li>
-							<li>
-								Tests
-							</li>
 						</ul>
+					</section>
+
+					<section>
+						<h6>Questions?</h6>
 					</section>
 				</section>
 
@@ -376,36 +1186,669 @@ Semantics(
 					</section>
 
 					<section>
-						<h6>Topics to Cover... (To be done)</h6>
+						<h6>Topics</h6>
 						<ul>
-							<li>
-								Use Flutter original widgets underneath, 
-								as much as possible
+							<li class="fragment">
+								Challenges in Large Flutter Projects
 							</li>
-							<li>
-								Create good components
+							<li class="fragment">
+								Strategy & Prioritization
 							</li>
-							<li>
-								Page scaffolding
+							<li class="fragment">
+								Creating Scalable Patterns
 							</li>
-							<li>
-								Guideline and documentation
+							<li class="fragment">
+								Testing & Automation
 							</li>
-							<li>
-								Testing
-							</li>
-							<li>
-								Use AI help
+							<li class="fragment">
+								Use of AI
 							</li>
 						</ul>
 					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title" class="fragment">
+							Legacy code with poor accessibility practices
+						</p>
+						<img data-id="content" class="fragment" src="legacy.png">
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							Legacy code with poor accessibility practices
+						</p>
+						<img data-id="content" src="little.gif">
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							Inconsistent use of widgets and components
+						</p>
+						<pre data-id="component" class="fragment"><code class="hljs dart" data-trim data-line-numbers>
+							class SomePage extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return Scaffold(
+										body: Column(
+											children: [
+												GestureDetector(),
+												MyButtonComponents(),
+												MaterialButton(),
+											],
+										),
+									);
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							Inconsistent use of widgets and components
+						</p>
+						<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							class SomePage extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return Scaffold(
+										body: Column(
+											children: [
+												MyButtonComponents(),
+												MyButtonComponents(),
+												MyButtonComponents(),
+												// always only use your 
+												// local component on the page impl
+											],
+										),
+									);
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							No Semantic wrapper on custom widget
+						</p>
+						<pre class="fragment" data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							class SomeWidget extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return GestureDetector(
+										onTap: onTap,
+										child: SomeWidget(),
+									);
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							No Semantic wrapper on custom widget
+						</p>
+						<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							class SomeWidget extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									// always use Semantic on custom
+									// non-default Flutter widgets
+									return Semantic(
+										button: true,
+										child: GestureDetector(
+											onTap: onTap,
+											child: SomeWidget(),
+										),
+									);
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							Lack of Documentation or Accessibility Standard
+						</p>
+						<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							class MyButton1 extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return ...;
+								}
+							}
+
+							class MyButton2 extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return ...;
+								}
+							}
+
+							class MyButton3 extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return ...;
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Challenges in Large Flutter Projects</h6>
+						<p data-id="title">
+							Lack of Documentation or Accessibility Standard
+						</p>
+						<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							// Have a Base Component in project
+							class MyOnlyButton extends StatelessWidgets {
+								Widget build(BuildContext context) {
+									return ...;
+								}
+							}
+						</code></pre>
+					</section>
+
+					<section>
+						<h6>Strategy & Prioritization</h6>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p class="fragment" data-id="title">
+							Start by auditing your app
+						</p>
+						<pre class="fragment" data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+							testWidgets('Counter app accessibility test', (WidgetTester tester) async {
+							    await tester.pumpWidget(MyApp());
+
+							    // Test accessibility guidelines
+							    await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+							    await expectLater(tester, meetsGuideline(textContrastGuideline));
+							  });
+						</code></pre>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Start by auditing your app
+						</p>
+						<div data-id="component" class="clearfix">
+							<image src="audit4.png" width="200px" 
+							style="margin-right: 40px;" class="image-float"/>
+							<image src="audit3.png" width="200px" 
+							style="margin-right: 40px;" class="fragment image-float"/>
+							<image src="audit2.png" width="200px" 
+							style="margin-right: 40px;" class="fragment image-float"/>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Start by auditing your app
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								testWidgets('All buttons have semantic labels', (WidgetTester tester) async {
+									await tester.pumpWidget(MyApp());
+									
+									// Find all buttons
+									final buttons = find.byType(ElevatedButton);
+									expect(buttons, findsWidgets);
+									
+									// Check each button has accessibility info
+									for (int i = 0; i < tester.widgetList(buttons).length; i++) {
+										final button = tester.widget<ElevatedButton>(buttons.at(i));
+										// Add semantic checks here
+									}
+								});
+							</code></pre>
+						</div>
+					</section>
+					
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Start by auditing your app
+						</p>
+						<div data-id="component" class="clearfix">
+							<image src="talkback.jpg" class="image-float"/>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Prioritizing Critical Flows (Login, Home Page, etc)
+						</p>
+						<div data-id="component" class="clearfix">
+							<image src="figma.jpg" class="image-float"/>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Prioritizing Critical Flows (Login, Home Page, etc)
+						</p>
+						<div data-id="component" class="clearfix">
+							<image src="figma2.png" width="500px" class="image-float"/>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Strategy & Prioritization</h6>
+						<p data-id="title">
+							Create an accessibility Backlog
+						</p>
+						<div data-id="component" class="clearfix">
+							<image src="backlog.jpg" class="image-float"/>
+						</div>
+					</section>
+
+					<section>
+						<h6>Creating Scalable Patterns</h6>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Build Reusable accessible widgets
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								class BaseButton extends StatelessWidget {}
+
+								class BaseText extends StatelessWidget {}
+
+								class BaseTextField extends StatelessWidget {}
+
+								class BaseCard extends StatelessWidget {}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Inherit Flutter base widget as much as possible
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								class BaseButton extends StatelessWidget {
+									Widget build(BuildContext context) {
+										return GestureDetector();
+									}
+								}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Inherit Flutter base widget as much as possible
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								class BaseButton extends StatelessWidget {
+									Widget build(BuildContext context) {
+										// try to use this as much
+										// as possible
+										return ElevatedButton();
+									}
+								}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Use composition over inheritance with accessibility in mind
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								class AccessibleButton extends BaseAccessibleWidget {
+									const AccessibleButton({
+										String? semanticLabel,
+									}) : super(semanticLabel: semanticLabel, isButton: true);
+									
+									@override
+									Widget build(BuildContext context) {
+										// Complex accessibility logic mixed with UI logic
+										return Semantics(
+										label: semanticLabel,
+										button: isButton,
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Use composition over inheritance with accessibility in mind
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Small, focused accessibility wrapper
+								class AccessibleWrapper extends StatelessWidget {
+									final Widget child;
+									final String? label;
+									final String? hint;
+									final bool isButton;
+									final bool isHeader;
+									final bool enabled;
+									final VoidCallback? onTap;
+
+									@override
+									Widget build(BuildContext context) {
+										return Semantics(
+										label: label,
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Use composition over inheritance with accessibility in mind
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Compose accessible widgets using the wrapper
+								class MyAccessibleButton extends StatelessWidget {
+									final String label;
+									final VoidCallback? onPressed;
+									final Widget child;
+
+									@override
+									Widget build(BuildContext context) {
+										return AccessibleWrapper(
+										label: label,
+										hint: 'Double tap to activate',
+										isButton: true,
+										enabled: onPressed != null,
+										onTap: onPressed,
+										child: ElevatedButton(
+											...
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Abstract semantics logic where possible
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Scattered semantics logic throughout the app
+								class ProfileButton extends StatelessWidget {
+										@override
+										Widget build(BuildContext context) {
+											return Semantics(
+											label: 'Profile button',
+											hint: 'Double tap to view profile',
+										}
+									}
+
+									class SettingsButton extends StatelessWidget {
+									@override
+									Widget build(BuildContext context) {
+										return Semantics(
+										label: 'Settings button',
+										hint: 'Double tap to open settings',
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Abstract semantics logic where possible
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Abstract common semantics patterns
+								class SemanticPatterns {
+									// Button semantics
+									static Widget button({
+										required Widget child,
+										required String label,
+										String? hint,
+										bool enabled = true,
+										VoidCallback? onTap,
+									}) {
+										return Semantics(
+										label: label,
+										hint: hint ?? 'Double tap to activate',
+									}
+
+									// Header semantics
+									static Widget header({
+										required Widget child,
+										required String label,
+										int level = 1,
+									}) {
+										return Semantics(
+											label: label,
+											header: true,
+										);
+									}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Abstract semantics logic where possible
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Now use the abstracted patterns
+								class ProfileButton extends StatelessWidget {
+									@override
+									Widget build(BuildContext context) {
+										return SemanticPatterns.button(
+										label: 'Profile',
+										hint: 'View your profile information',
+										onTap: navigateToProfile,
+										child: IconButton(
+											icon: Icon(Icons.person),
+											onPressed: navigateToProfile,
+										),
+										);
+									}
+									}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Creating Scalable Patterns</h6>
+						<p data-id="title">
+							Create a good design system for pages
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								class BasePageMain extends StatelessWidget {}
+
+								class BaseDetailPage extends StatelessWidget {}
+							</code></pre>
+						</div>
+					</section>
+
+					<section>
+						<h6>Testing & Automation</h6>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Testing & Automation</h6>
+						<p data-id="title">
+							Use the Flutter unit tests
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								testWidgets('Button has correct semantic properties', (WidgetTester tester) async {
+									await tester.pumpWidget(
+										MaterialApp(
+										home: AccessibleButton(
+											label: 'Submit Form',
+											onPressed: () {},
+										),
+										),
+									);
+
+									// Test semantic label
+									expect(find.bySemanticsLabel('Submit Form'), findsOneWidget);
+									
+									// Test button semantics
+									final semantics = tester.getSemantics(find.byType(AccessibleButton));
+									expect(semantics.hasAction(SemanticsAction.tap), isTrue);
+									expect(semantics.hasFlag(SemanticsFlag.isButton), isTrue);
+									expect(semantics.hasFlag(SemanticsFlag.isEnabled), isTrue);
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Testing & Automation</h6>
+						<p data-id="title">
+							Check the contrast programmatically
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Test contrast ratio programmatically
+								final backgroundLuminance = Colors.blue[700]!.computeLuminance();
+								final textLuminance = Colors.white.computeLuminance();
+								
+								final contrast = (textLuminance + 0.05) / (backgroundLuminance + 0.05);
+								
+								// WCAG AA requires 4.5:1 for normal text
+								expect(contrast, greaterThan(4.5));
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Testing & Automation</h6>
+						<p data-id="title">
+							Check the semantics programmatically
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								await tester.pumpWidget(
+									MaterialApp(
+									home: Scaffold(
+										body: ListView.builder(
+										itemCount: items.length,
+										itemBuilder: (context, index) {
+											return Semantics(
+											label: '${items[index]}, item ${index + 1} of ${items.length}',
+											button: true,
+											child: ListTile(
+												title: Text(items[index]),
+												onTap: () {},
+											),
+											);
+										},
+										),
+									),
+									),
+								);
+
+								// Test each item has correct semantics
+								for (int i = 0; i < items.length; i++) {
+									expect(
+									find.bySemanticsLabel('${items[i]}, item ${i + 1} of ${items.length}'),
+									findsOneWidget,
+									);
+								}
+							</code></pre>
+						</div>
+					</section>
+
+					<section data-auto-animate="">
+						<h6>Testing & Automation</h6>
+						<p data-id="title">
+							Use lint
+						</p>
+						<div data-id="component" class="clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								Widget build(BuildContext context) {
+									return Column(
+										children: [
+											SomeButtonComponent(
+												// Label here is optional
+												semanticLabel: 'Label1',
+											),
+											SomeButtonComponent(),
+											SomeButtonComponent(),
+										],
+									);
+								}
+								// later you can count how 
+								// many SomeButtonComponent without 
+								// semanticLabel. Using custom linter
+							</code></pre>
+						</div>
+					</section>
+
+					<section>
+						<h6>Use of AI</h6>
+					</section>
+
+					<section>
+						<h6>Use of AI</h6>
+						<div data-id="component" class="clearfix">
+							<image src="claude.webp"
+							style="margin-right: 20px;" width="200px" 
+							class="fragment image-float"/>
+							<image src="cursor.png" 
+							style="margin-right: 20px;" width="200px" 
+							class="fragment image-float"/>
+							<image src="gemini.png" 
+							style="margin-right: 20px;" width="200px" 
+							class="fragment image-float"/>
+						</div>
+					</section>
+
+					<section>
+						<h6>Use of AI</h6>
+						<div data-id="component" class="fragment clearfix">
+							<pre data-id="component"><code class="hljs dart" data-trim data-line-numbers>
+								// Prompt
+								Hey, can you check @some_page.dart if all the 
+								accessibility requirements are met?
+								// You can be more specific here of course
+							</code></pre>
+						</div>
+					</section>
+					
 				</section>
 
 				<!-- Q&A and Closing -->
 				<section>
-					<h6>Questions?</h6>
+					<h6>Repository</h6>
+					<br>
+					<p>
+						<a href="https://bit.ly/FlutterA11yBanking">
+							https://bit.ly/FlutterA11yBanking
+						</a>
+					</p>
+				</section>
+				
+				<!-- Q&A and Closing -->
+				<section>
+					<h6>Last Questions?</h6>
 					<br>
 					<p>Thank you for attending the Accessibility in Flutter workshop!</p>
+					<span style="font-size: 24px;">*In case of future questions, feel free to contact me at anggadwiarifandi96@gmail.com</span>
 					<br>
 					<p><em>Remember: Accessibility is not a feature, it's a responsibility. </em> ☺️</p>
 				</section>
