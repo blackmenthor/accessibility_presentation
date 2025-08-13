@@ -59,9 +59,20 @@
 				display: table;
 				clear: both;
 			}
+
+			.site-logo {
+				position: fixed;
+				top: 20px;           /* Margin from top */
+				right: 20px;         /* Margin from right */
+				width: 50px;        /* Adjust size as needed */
+				height: auto;        /* Maintain aspect ratio */
+				z-index: 1000;       /* Ensure it stays on top */
+			}
 		</style>
 	</head>
 	<body>
+		<!-- Logo - will appear on all pages -->
+    	<img src="suarise.jpg" alt="Company Logo" class="site-logo">
 		<div class="reveal">
 			<div class="slides">
 				<!-- Title Slide -->
@@ -85,14 +96,15 @@
 				 <section>
 					<h4>Hello There</h4>
 					<img 
+						class="fragment"
 						src="Angga.png" 
 						height="240px"
 						style="background: transparent; margin: 0px;"
 					/>
 					<p>
-						<span>I'm Angga Arifandi.</span></br>
-						<span>Software Engineer, ING Netherlands.</span></br>
-						<span>Google Dev Expert in Flutter</span>
+						<span class="fragment">I'm Angga Arifandi. (Angga)</span></br>
+						<span class="fragment">Software Engineer, ING Netherlands.</span></br>
+						<span class="fragment">Google Dev Expert in Flutter</span>
 					</p>
 				</section>
 
@@ -475,7 +487,7 @@
 											children: [
 												Semantics(
 													label: 'Some Label',
-													sortKey: OrdinalSortKey(1),
+													sortKey: OrdinalSortKey(3),
 													Container1(),
 												),
 												Semantics(
